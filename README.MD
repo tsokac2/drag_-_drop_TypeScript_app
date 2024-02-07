@@ -1,1 +1,1 @@
-<h1 aligment="center" >Drag and Drop TypeScript App</h1>
+<h1 align="center" >Drag and Drop TypeScript App</h1>
