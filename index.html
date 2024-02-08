@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Project Manager</title>
     <link rel="stylesheet" href="app.css" />
-    <script src="dist/app.js" defer></script>
+    <script src="dist/appTest.js" defer></script>
   </head>
   <body>
+
+    <!-- FORM TEMPLATE -->
     <template id="project-input">
       <form>
         <div class="form-control">
@@ -26,9 +28,13 @@
         <button type="submit">ADD PROJECT</button>
       </form>
     </template>
+
+    <!--NEW PROJECT TEMPLATE -->
     <template id="single-project">
       <li></li>
     </template>
+
+    <!--LIST OF ALL THE PROJECTS-->
     <template id="project-list">
       <section class="projects">
         <header>
@@ -37,6 +43,10 @@
         <ul></ul>
       </section>
     </template>
+
+
+    <!--PLACE HOLDER FOR THE ELEMENTS THAT ARE RENDERED ON THE DOM-->
     <div id="app"></div>
+
   </body>
 </html>
