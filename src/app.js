@@ -1,1 +1,1 @@
-alert("OK");
+"use strict";
