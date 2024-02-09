@@ -19,22 +19,33 @@ class Project {
 
 
 // #3 - CLASS Project State Managment Global Class for managing State 
+// Project State Management
 
-type Listener = (items: Project[]) => void;
+type Listener<T> = (items: T[]) => void;
 
-class ProjectState {
-    private listeners: Listener[] = [];
+
+// Base State Class
+class State<T> {
+    protected listeners: Listener<T>[] = [];
+
+    addListener(listenerFn: Listener<T>) {
+        this.listeners.push(listenerFn);
+    }
+}
+
+// Project State Component
+class ProjectState extends State<Project>{
+    
+
     private projects: Project[] = [];
     private static instance: ProjectState;
    
 
-    private constructor() {
+    private constructor(
+       
+    ) { super();}
 
-    }
-
-    addListener(listenerFn: Listener) {
-        this.listeners.push(listenerFn);
-    }
+   
 
     static getInstance() {
         if(this.instance) {
