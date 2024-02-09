@@ -1,3 +1,42 @@
+// Validation logic that can me implemented acros the project in different parts of the app
+interface Validatable {
+    value: string | number;
+    required?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    min?: number;
+    max?: number;
+}
+
+// validate function controler using Validatable interface as a type
+function validate(validatableInput: Validatable) {
+
+    let isValid = true;
+
+    if (validatableInput.required){
+        isValid = isValid && validatableInput.value.toString().trim().length !== 0;
+    }
+
+    if (validatableInput.minLength != null && typeof validatableInput.value === "string") {
+        isValid = isValid && validatableInput.value.length >= validatableInput.minLength; 
+    }
+
+    if (validatableInput.maxLength != null && typeof validatableInput.value === "string") {
+        isValid = isValid && validatableInput.value.length <= validatableInput.maxLength; 
+    }
+
+    if (validatableInput.min != null && typeof validatableInput.value === "number") {
+        isValid = isValid && validatableInput.value >= validatableInput.min; 
+    }
+
+    if (validatableInput.max != null && typeof validatableInput.value === "number") {
+        isValid = isValid && validatableInput.value <= validatableInput.max; 
+    }
+
+    return isValid;
+}
+
+
 // Define Autobind decorator - Tomislav
 function autobind(
     _: any,
@@ -54,10 +93,37 @@ class ProjectInput { //showing form in the Html Templat element
         const enteredDescription = this.descriptionInputElement.value;
         const enteredPeople = this.peopleInputElement.value;
 
+
+        // Constructing validable objects base on the validate function and validable interface
+
+        //Object for validating the title
+        const titleValidatable: Validatable = {
+            value: enteredTitle,
+            required: true,
+            minLength: 3
+        }; 
+
+        //Object for validating description
+        const descriptionValidatable: Validatable = {
+            value: enteredDescription,
+            required: true,
+            minLength: 5
+        }; 
+
+        //Object for validating people
+        const peopleValidatable: Validatable = {
+            value: +enteredPeople,
+            required: true,
+            min: 1,
+            max: 8
+        }; 
+
+
+        // Final validation
         if (
-            enteredTitle.trim().length === 0 ||
-            enteredDescription.trim().length === 0 ||
-            enteredPeople.trim().length === 0
+          !validate(titleValidatable) || 
+          !validate(descriptionValidatable) || 
+          !validate(peopleValidatable)
         ) {
             alert("Invalid input, please try again!");
             return;
@@ -110,3 +176,5 @@ const prInput = new ProjectInput();
 
 // Cheking the compiler conneciton 
 console.log("Cheking...App_TS");
+
+
