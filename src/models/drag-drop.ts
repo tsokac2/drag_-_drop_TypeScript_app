@@ -1,6 +1,6 @@
 //Drag & Drop Interfaces
-namespace App {
-  //this is a Typescript feature not Vanila JavaScript feature
+
+//this is a Typescript feature not Vanila JavaScript feature
 
   export interface Draggable {
     dragStartHandler(event: DragEvent): void;
@@ -12,4 +12,4 @@ namespace App {
     dropHandler(event: DragEvent): void;
     dragLeaveHandler(event: DragEvent): void;
   }
-}
+
