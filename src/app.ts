@@ -1,5 +1,5 @@
-import { ProjectInput } from "./components/project-input.js";
-import { ProjectList } from "./components/project-list.js";
+import { ProjectInput } from "./components/project-input";
+import { ProjectList } from "./components/project-list";
 
 
 // Creating and calling a new calss and rendering elemetn to the DOM
